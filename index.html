@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BCB Sounds</title>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Inter&display=swap" rel="stylesheet">
+
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- JS libraries will be loaded deferred -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <!-- HEADER / NAV -->
+  <header class="header">
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Samples</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="theme-toggle">☀️ / 🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero-section" data-aos="fade-up">
+    <div class="hero-content">
+      <!-- VINYL INSTEAD OF LOGO -->
+      <video autoplay muted loop playsinline class="hero-vinyl" aria-label="Spinning Vinyl Logo">
+        <source src="assets/vinyl-loop.mp4" type="video/mp4"/>
+      </video>
+
+      <h1>Soundtracks that Speak Your Story</h1>
+      <p>Custom music tailored to your brand, voice, and audience.</p>
+
+      <!-- SAMPLE 1 AUDIO PLAYER -->
+      <div class="audio-player">
+        <audio id="sample-audio" controls>
+          <source src="assets/sample1.mp3" type="audio/mpeg"/>
+          Your browser doesn’t support the audio element.
+        </audio>
+      </div>
+    </div>
+  </section>
+
+  <!-- (Re-insert your existing About, Services, Portfolio, Pricing, Blog, Contact sections here) -->
+
+  <!-- FOOTER -->
+  <footer class="footer" data-aos="fade-up">
+    <div class="social-icons">
+      <a href="https://www.tiktok.com/@bcbsounds"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="BCB Sounds on TikTok"
+         class="social-link">
+        <img src="assets/tiktok.svg" alt="TikTok Icon"/>
+      </a>
+      <a href="https://www.instagram.com/bcbsounds"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="BCB Sounds on Instagram"
+         class="social-link">
+        <img src="assets/instagram.svg" alt="Instagram Icon"/>
+      </a>
+    </div>
+    <p>© 2025 BCB Sounds. All rights reserved.</p>
+  </footer>
+</body>
+</html>
