@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transparent pricing for AI-generated custom music. Get instant quotes starting from £20. Up to 72 hour delivery with commercial rights included.">
+    <title>Pricing - BCB Sounds | AI Music Generation Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Beta Testing Badge -->
+    <div class="beta-badge">
+        <span>🧪 Beta Testing in Progress</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="BCB Sounds" class="logo-img" onerror="this.style.display='none'">
+                    <div class="logo-text">
+                        <span class="logo-main">BCB Sounds</span>
+                        <span class="logo-tagline">Powered by AI</span>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+                    <li><a href="samples.html" class="nav-link">Samples</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌓</button></li>
+                </ul>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Simple, Transparent Pricing</h1>
+                <p class="page-subtitle">Get an instant quote for your AI-generated music. All prices include full commercial rights and delivery within 72 hours.</p>
+                <div class="header-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">💰</span>
+                        <span>No Hidden Fees</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📜</span>
+                        <span>Commercial Rights Included</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">⚡</span>
+                        <span>Up to 72hr Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section class="calculator-section section">
+        <div class="container">
+            <div class="calculator-wrapper">
+                <h2 class="section-title">Pricing Calculator</h2>
+                <p class="section-subtitle">Customize your order and get an instant quote</p>
+                
+                <div class="pricing-calculator">
+                    <!-- Package Selection -->
+                    <div class="calculator-step">
+                        <h3 class="step-title">1. Choose Your Package</h3>
+                        <div class="package-grid">
+                            <label class="package-option">
+                                <input type="radio" name="package" value="jingle" data-price="20" checked>
+                                <div class="package-card">
+                                    <div class="package-icon">🎵</div>
+                                    <h4>Quick Jingle</h4>
+                                    <p class="package-desc">30 seconds</p>
+                                    <div class="package-features">
+                                        <span>• 1 revision</span>
+                                        <span>• MP3 format</span>
+                                        <span>• Up to 72hr delivery</span>
+                                    </div>
+                                    <div class="package-price">£20</div>
+                                </div>
+                            </label>
+                            
+                            <label class="package-option">
+                                <input type="radio" name="package" value="track" data-price="50">
+                                <div class="package-card popular">
+                                    <div class="popular-badge">Most Popular</div>
+                                    <div class="package-icon">🎬</div>
+                                    <h4>Full Track</h4>
+                                    <p class="package-desc">60 seconds</p>
+                                    <div class="package-features">
+                                        <span>• 2 revisions</span>
+                                        <span>• MP3 + WAV</span>
+                                        <span>• Up to 72hr delivery</span>
+                                    </div>
+                                    <div class="package-price">£50</div>
+                                </div>
+                            </label>
+                            
+                            <label class="package-option">
+                                <input type="radio" name="package" value="premium" data-price="100">
+                                <div class="package-card">
+                                    <div class="package-icon">🎙️</div>
+                                    <h4>Premium Suite</h4>
+                                    <p class="package-desc">Multiple tracks</p>
+                                    <div class="package-features">
+                                        <span>• 3 revisions</span>
+                                        <span>• All formats + stems</span>
+                                        <span>• Up to 72hr delivery</span>
+                                    </div>
+                                    <div class="package-price">£100</div>
+                                </div>
+                            </label>
+                            
+                            <label class="package-option">
+                                <input type="radio" name="package" value="enterprise" data-price="150">
+                                <div class="package-card">
+                                    <div class="package-icon">🏢</div>
+                                    <h4>Enterprise</h4>
+                                    <p class="package-desc">Custom solution</p>
+                                    <div class="package-features">
+                                        <span>• Unlimited revisions</span>
+                                        <span>• Custom formats</span>
+                                        <span>• Priority delivery</span>
+                                    </div>
+                                    <div class="package-price">£150+</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Add-ons -->
+                    <div class="calculator-step">
+                        <h3 class="step-title">2. Optional Add-ons</h3>
+                        <div class="addons-grid">
+                            <label class="addon-option">
+                                <input type="checkbox" name="addon" value="broadcast" data-price="30">
+                                <div class="addon-card">
+                                    <div class="addon-icon">📺</div>
+                                    <div class="addon-content">
+                                        <h4>Broadcast Rights</h4>
+                                        <p>TV and radio usage</p>
+                                        <div class="addon-price">+£30</div>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="addon-option">
+                                <input type="checkbox" name="addon" value="rush" data-multiplier="1.5">
+                                <div class="addon-card">
+                                    <div class="addon-icon">⚡</div>
+                                    <div class="addon-content">
+                                        <h4>Rush Delivery</h4>
+                                        <p>12-24 hour delivery</p>
+                                        <div class="addon-price">+50%</div>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="addon-option">
+                                <input type="checkbox" name="addon" value="stems" data-price="25">
+                                <div class="addon-card">
+                                    <div class="addon-icon">🎛️</div>
+                                    <div class="addon-content">
+                                        <h4>Stem Files</h4>
+                                        <p>Individual tracks</p>
+                                        <div class="addon-price">+£25</div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Display -->
+                    <div class="price-summary">
+                        <div class="price-breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Base Package:</span>
+                                <span class="breakdown-value" id="base-price">£20</span>
+                            </div>
+                            <div class="breakdown-item" id="addons-breakdown" style="display: none;">
+                                <span class="breakdown-label">Add-ons:</span>
+                                <span class="breakdown-value" id="addons-price">£0</span>
+                            </div>
+                            <div class="breakdown-item subtotal">
+                                <span class="breakdown-label">Subtotal:</span>
+                                <span class="breakdown-value" id="subtotal-price">£20</span>
+                            </div>
+                            <div class="breakdown-item vat">
+                                <span class="breakdown-label">UK VAT (20%):</span>
+                                <span class="breakdown-value" id="vat-price">£4.00</span>
+                            </div>
+                            <div class="breakdown-item total">
+                                <span class="breakdown-label">Total:</span>
+                                <span class="breakdown-value" id="total-price">£24.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="price-actions">
+                            <button class="btn btn-primary btn-large" onclick="proceedToOrder()">
+                                Order Now
+                                <span class="btn-icon">→</span>
+                            </button>
+                            <button class="btn btn-outline" onclick="resetCalculator()">Reset Calculator</button>
+                        </div>
+                        
+                        <div class="price-notes">
+                            <p><strong>Delivery:</strong> Up to 72 hours (Rush: 12-24 hours)</p>
+                            <p><strong>Revisions:</strong> Included based on package selected</p>
+                            <p><strong>Rights:</strong> Full commercial license included</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Comparison Table -->
+    <section class="comparison-section section">
+        <div class="container">
+            <h2 class="section-title">Package Comparison</h2>
+            <p class="section-subtitle">Compare features across all our service levels</p>
+            
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Quick Jingle<br><span class="price-small">£20</span></th>
+                            <th>Full Track<br><span class="price-small">£50</span></th>
+                            <th>Premium Suite<br><span class="price-small">£100</span></th>
+                            <th>Enterprise<br><span class="price-small">£150+</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Track Length</strong></td>
+                            <td>30 seconds</td>
+                            <td>60 seconds</td>
+                            <td>Multiple tracks</td>
+                            <td>Custom lengths</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revisions Included</strong></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>File Formats</strong></td>
+                            <td>MP3</td>
+                            <td>MP3, WAV</td>
+                            <td>MP3, WAV, Stems</td>
+                            <td>All formats + custom</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Delivery Time</strong></td>
+                            <td>Up to 72 hours</td>
+                            <td>Up to 72 hours</td>
+                            <td>Up to 72 hours</td>
+                            <td>Priority delivery</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Commercial Rights</strong></td>
+                            <td>✓ Full license</td>
+                            <td>✓ Full license</td>
+                            <td>✓ Full license</td>
+                            <td>✓ Full license</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Support Level</strong></td>
+                            <td>Standard email</td>
+                            <td>Priority email</td>
+                            <td>Extended support</td>
+                            <td>Dedicated manager</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Variations</strong></td>
+                            <td>1 option</td>
+                            <td>2-3 options</td>
+                            <td>Multiple options</td>
+                            <td>Unlimited options</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rush Delivery</strong></td>
+                            <td>+50% surcharge</td>
+                            <td>+50% surcharge</td>
+                            <td>+50% surcharge</td>
+                            <td>Included</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section section">
+        <div class="container">
+            <h2 class="section-title">Pricing Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Are there any hidden costs?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No hidden fees. The price you see includes everything except UK VAT (20%) which is added at checkout for UK customers. All packages include commercial licensing and your specified number of revisions.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What payment methods do you accept?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards, debit cards, PayPal, and bank transfers. Payment is required upfront before we begin work on your project.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Can I get a refund if I'm not satisfied?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee. If you're not completely satisfied with your custom track and we can't resolve the issue through revisions, we'll provide a full refund.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Do you offer discounts for multiple tracks?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Our Premium Suite package offers significant savings for multiple tracks. For larger orders (10+ tracks), contact us for custom enterprise pricing with additional discounts.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        When do I pay VAT?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>UK VAT (20%) is automatically added for UK-based customers. EU customers may need to pay local VAT. Non-EU customers don't pay UK VAT. All prices shown are before VAT.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Create Your Custom Music?</h2>
+                <p>Join 50+ creators who trust BCB Sounds for their audio needs</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-large">Start Your Project</a>
+                    <a href="samples.html" class="btn btn-outline btn-large">Listen to Samples</a>
+                </div>
+                <div class="cta-guarantee">
+                    <span class="guarantee-icon">🛡️</span>
+                    <span>30-day money-back guarantee • Up to 72 hour delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-main">BCB Sounds</span>
+                        <span class="logo-tagline">Powered by AI</span>
+                    </div>
+                    <p class="footer-desc">Professional AI-generated music for creators and businesses.</p>
+                    <div class="footer-stats">
+                        <span>Established 2025</span>
+                        <span>•</span>
+                        <span>50+ Beta Users</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Services</a></li>
+                        <li><a href="services.html#jingles">Quick Jingles</a></li>
+                        <li><a href="services.html#tracks">Full Tracks</a></li>
+                        <li><a href="services.html#premium">Premium Package</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="samples.html">Sample Library</a></li>
+                        <li><a href="pricing.html">Pricing Calculator</a></li>
+                        <li><a href="contact.html">Get Started</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.pdf" target="_blank">Terms of Service</a></li>
+                        <li><a href="privacy.pdf" target="_blank">Privacy Policy</a></li>
+                        <li><a href="licensing.pdf" target="_blank">Music Licensing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/bcbsounds" target="_blank" class="social-link">
+                            <span class="social-icon">📷</span>
+                            Instagram
+                        </a>
+                        <a href="https://tiktok.com/@bcbsounds" target="_blank" class="social-link">
+                            <span class="social-icon">🎵</span>
+                            TikTok
+                        </a>
+                    </div>
+                    <div class="contact-info">
+                        <p>hello@bcbsounds.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BCB Sounds. All rights reserved. | Established 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/legal.js"></script>
+    
+    <!-- Pricing Calculator Script -->
+    <script>
+        // Pricing Calculator Functionality
+        function updatePricing() {
+            const packageInputs = document.querySelectorAll('input[name="package"]');
+            const addonInputs = document.querySelectorAll('input[name="addon"]');
+            
+            let basePrice = 0;
+            let addonsPrice = 0;
+            let isRushDelivery = false;
+            
+            // Get base package price
+            packageInputs.forEach(input => {
+                if (input.checked) {
+                    basePrice = parseFloat(input.dataset.price);
+                }
+            });
+            
+            // Calculate add-ons
+            addonInputs.forEach(input => {
+                if (input.checked) {
+                    if (input.dataset.price) {
+                        addonsPrice += parseFloat(input.dataset.price);
+                    }
+                    if (input.dataset.multiplier) {
+                        isRushDelivery = true;
+                    }
+                }
+            });
+            
+            // Apply rush delivery multiplier
+            let subtotal = basePrice + addonsPrice;
+            if (isRushDelivery) {
+                subtotal = subtotal * 1.5;
+            }
+            
+            // Calculate VAT
+            const vatAmount = subtotal * 0.20;
+            const total = subtotal + vatAmount;
+            
+            // Update display
+            document.getElementById('base-price').textContent = `£${basePrice}`;
+            document.getElementById('addons-price').textContent = `£${addonsPrice.toFixed(2)}`;
+            document.getElementById('subtotal-price').textContent = `£${subtotal.toFixed(2)}`;
+            document.getElementById('vat-price').textContent = `£${vatAmount.toFixed(2)}`;
+            document.getElementById('total-price').textContent = `£${total.toFixed(2)}`;
+            
+            // Show/hide add-ons breakdown
+            const addonsBreakdown = document.getElementById('addons-breakdown');
+            if (addonsPrice > 0 || isRushDelivery) {
+                addonsBreakdown.style.display = 'flex';
+            } else {
+                addonsBreakdown.style.display = 'none';
+            }
+        }
+        
+        function resetCalculator() {
+            // Reset all inputs
+            document.querySelectorAll('input[name="package"]')[0].checked = true;
+            document.querySelectorAll('input[name="addon"]').forEach(input => {
+                input.checked = false;
+            });
+            updatePricing();
+            showToast('Calculator reset');
+        }
+        
+        function proceedToOrder() {
+            const selectedPackage = document.querySelector('input[name="package"]:checked').value;
+            const selectedAddons = [];
+            document.querySelectorAll('input[name="addon"]:checked').forEach(input => {
+                selectedAddons.push(input.value);
+            });
+            
+            const totalPrice = document.getElementById('total-price').textContent;
+            
+            // Store selection and redirect to contact
+            sessionStorage.setItem('selectedPackage', selectedPackage);
+            sessionStorage.setItem('selectedAddons', JSON.stringify(selectedAddons));
+            sessionStorage.setItem('calculatedPrice', totalPrice);
+            
+            window.location.href = `contact.html?package=${selectedPackage}&price=${totalPrice}`;
+        }
+        
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners
+            document.querySelectorAll('input[name="package"], input[name="addon"]').forEach(input => {
+                input.addEventListener('change', updatePricing);
+            });
+            
+            // Initial calculation
+            updatePricing();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Listen to AI-generated music samples from BCB Sounds. Explore our library of custom jingles, full tracks, and soundscapes across multiple genres.">
+    <title>Sample Library - BCB Sounds | AI Music Examples</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Beta Testing Badge -->
+    <div class="beta-badge">
+        <span>🧪 Beta Testing in Progress</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="BCB Sounds" class="logo-img" onerror="this.style.display='none'">
+                    <div class="logo-text">
+                        <span class="logo-main">BCB Sounds</span>
+                        <span class="logo-tagline">Powered by AI</span>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                    <li><a href="samples.html" class="nav-link active">Samples</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌓</button></li>
+                </ul>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Sample Library</h1>
+                <p class="page-subtitle">Explore our collection of AI-generated music across various styles and genres. All tracks created with up to 72 hour delivery and full commercial rights.</p>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Sample Tracks</span>
+                    </div>
+                    <div class="stat-divider">•</div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-divider">•</div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">AI Generated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Controls -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <h2>Browse by Category</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Samples</button>
+                    <button class="filter-btn" data-filter="podcast">Podcast</button>
+                    <button class="filter-btn" data-filter="commercial">Commercial</button>
+                    <button class="filter-btn" data-filter="jingle">Jingles</button>
+                    <button class="filter-btn" data-filter="sleep">Ambient</button>
+                </div>
+                <div class="filter-info">
+                    <p>All samples are previews of our AI-generated music capabilities. <strong>Full commercial versions delivered within 72 hours.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Samples Grid -->
+    <section class="samples-section section">
+        <div class="container">
+            <div class="samples-grid" id="samples-grid">
+                <!-- Podcast Samples -->
+                <div class="sample-card" data-category="podcast">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>History Hype Intro</h3>
+                            <p class="sample-description">Boom bap style podcast opener with vintage horns and vinyl texture</p>
+                            <div class="sample-tags">
+                                <span class="tag">Podcast</span>
+                                <span class="tag">Hip Hop</span>
+                                <span class="tag">Vintage</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="history-hype">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">History Hype Intro</div>
+                            <div class="track-duration">0:30</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_1.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=podcast-intro" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="podcast">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>The Parent Lab</h3>
+                            <p class="sample-description">Warm acoustic intro with ukulele and light piano</p>
+                            <div class="sample-tags">
+                                <span class="tag">Podcast</span>
+                                <span class="tag">Acoustic</span>
+                                <span class="tag">Family</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="parent-lab">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">The Parent Lab</div>
+                            <div class="track-duration">0:28</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_2.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=acoustic-intro" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="podcast">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>ByteSize News</h3>
+                            <p class="sample-description">Snappy electro-pop tech opener with glitch FX</p>
+                            <div class="sample-tags">
+                                <span class="tag">Podcast</span>
+                                <span class="tag">Electronic</span>
+                                <span class="tag">Tech</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="bytesize-news">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">ByteSize News</div>
+                            <div class="track-duration">0:25</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_3.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=electronic-news" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <!-- Commercial Samples -->
+                <div class="sample-card" data-category="commercial">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Fitness Campaign</h3>
+                            <p class="sample-description">High-energy motivational track with synths and drums</p>
+                            <div class="sample-tags">
+                                <span class="tag">Commercial</span>
+                                <span class="tag">Motivational</span>
+                                <span class="tag">Fitness</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="fitness-campaign">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Fitness Campaign</div>
+                            <div class="track-duration">0:45</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_4.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=motivational-commercial" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="commercial">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Luxury Skincare Ad</h3>
+                            <p class="sample-description">Soft ambient piano with elegant textures</p>
+                            <div class="sample-tags">
+                                <span class="tag">Commercial</span>
+                                <span class="tag">Luxury</span>
+                                <span class="tag">Ambient</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="luxury-skincare">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Luxury Skincare Ad</div>
+                            <div class="track-duration">0:35</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_5.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=luxury-ambient" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="commercial">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Product Launch Pop</h3>
+                            <p class="sample-description">Bright indie pop tune with upbeat rhythm</p>
+                            <div class="sample-tags">
+                                <span class="tag">Commercial</span>
+                                <span class="tag">Pop</span>
+                                <span class="tag">Upbeat</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="product-launch">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Product Launch Pop</div>
+                            <div class="track-duration">0:40</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_6.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=indie-pop-commercial" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <!-- Jingle Samples -->
+                <div class="sample-card" data-category="jingle">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Bakery Jingle</h3>
+                            <p class="sample-description">Friendly folk jingle with acoustic vibes</p>
+                            <div class="sample-tags">
+                                <span class="tag">Jingle</span>
+                                <span class="tag">Folk</span>
+                                <span class="tag">Friendly</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="bakery-jingle">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Bakery Jingle</div>
+                            <div class="track-duration">0:20</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_7.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=folk-jingle" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="jingle">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>App Launch Jingle</h3>
+                            <p class="sample-description">10-second synthwave jingle for tech products</p>
+                            <div class="sample-tags">
+                                <span class="tag">Jingle</span>
+                                <span class="tag">Synthwave</span>
+                                <span class="tag">Tech</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="app-launch">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">App Launch Jingle</div>
+                            <div class="track-duration">0:10</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_8.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=synthwave-jingle" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="jingle">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Youth Radio Bumper</h3>
+                            <p class="sample-description">Trap/pop fusion bumper with fast hats</p>
+                            <div class="sample-tags">
+                                <span class="tag">Jingle</span>
+                                <span class="tag">Trap</span>
+                                <span class="tag">Youth</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="youth-radio">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Youth Radio Bumper</div>
+                            <div class="track-duration">0:15</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_9.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=trap-radio" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <!-- Ambient/Sleep Samples -->
+                <div class="sample-card" data-category="sleep">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Sleep Wind-Down</h3>
+                            <p class="sample-description">Lo-fi ambient pad for end-of-day relaxation</p>
+                            <div class="sample-tags">
+                                <span class="tag">Ambient</span>
+                                <span class="tag">Sleep</span>
+                                <span class="tag">Lo-fi</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="sleep-winddown">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Sleep Wind-Down</div>
+                            <div class="track-duration">1:00</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_10.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=ambient-sleep" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="sleep">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Meditation Intro</h3>
+                            <p class="sample-description">Organic sounds with birds and harp for mindfulness</p>
+                            <div class="sample-tags">
+                                <span class="tag">Ambient</span>
+                                <span class="tag">Meditation</span>
+                                <span class="tag">Nature</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="meditation-intro">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Meditation Intro</div>
+                            <div class="track-duration">0:50</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_11.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=meditation-ambient" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="sample-card" data-category="sleep">
+                    <div class="sample-header">
+                        <div class="sample-info">
+                            <h3>Breath Loop</h3>
+                            <p class="sample-description">Cinematic pulse-based loop for calm focus</p>
+                            <div class="sample-tags">
+                                <span class="tag">Ambient</span>
+                                <span class="tag">Focus</span>
+                                <span class="tag">Cinematic</span>
+                            </div>
+                        </div>
+                        <div class="sample-badge">Preview</div>
+                    </div>
+                    
+                    <div class="audio-player-enhanced">
+                        <button class="play-btn" data-track="breath-loop">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <div class="track-info">
+                            <div class="track-title">Breath Loop</div>
+                            <div class="track-duration">0:45</div>
+                        </div>
+                        <div class="waveform">
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                            <div class="waveform-bar"></div>
+                        </div>
+                        <audio preload="none">
+                            <source src="./samples/sample_12.mp3" type="audio/mp3">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </div>
+                    
+                    <div class="sample-actions">
+                        <a href="contact.html?style=cinematic-ambient" class="btn btn-outline">Order Similar</a>
+                        <a href="pricing.html" class="btn btn-primary">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Create Your Custom Track?</h2>
+                <p>These samples showcase our AI capabilities. Your custom track will be uniquely generated for your specific needs.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-large">Start Your Project</a>
+                    <a href="pricing.html" class="btn btn-outline btn-large">Calculate Price</a>
+                </div>
+                <div class="cta-guarantee">
+                    <span class="guarantee-icon">🛡️</span>
+                    <span>Up to 72 hour delivery • Full commercial rights • 30-day guarantee</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-main">BCB Sounds</span>
+                        <span class="logo-tagline">Powered by AI</span>
+                    </div>
+                    <p class="footer-desc">Professional AI-generated music for creators and businesses.</p>
+                    <div class="footer-stats">
+                        <span>Established 2025</span>
+                        <span>•</span>
+                        <span>50+ Beta Users</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Services</a></li>
+                        <li><a href="services.html#jingles">Quick Jingles</a></li>
+                        <li><a href="services.html#tracks">Full Tracks</a></li>
+                        <li><a href="services.html#premium">Premium Package</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="samples.html">Sample Library</a></li>
+                        <li><a href="pricing.html">Pricing Calculator</a></li>
+                        <li><a href="contact.html">Get Started</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.pdf" target="_blank">Terms of Service</a></li>
+                        <li><a href="privacy.pdf" target="_blank">Privacy Policy</a></li>
+                        <li><a href="licensing.pdf" target="_blank">Music Licensing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/bcbsounds" target="_blank" class="social-link">
+                            <span class="social-icon">📷</span>
+                            Instagram
+                        </a>
+                        <a href="https://tiktok.com/@bcbsounds" target="_blank" class="social-link">
+                            <span class="social-icon">🎵</span>
+                            TikTok
+                        </a>
+                    </div>
+                    <div class="contact-info">
+                        <p>hello@bcbsounds.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BCB Sounds. All rights reserved. | Established 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/legal.js"></script>
+    
+    <!-- Enhanced Audio Player Script -->
+    <script>
+        // Enhanced Audio Player Functionality
+        let currentlyPlaying = null;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const sampleCards = document.querySelectorAll('.sample-card');
+            
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Filter samples
+                    const filter = btn.getAttribute('data-filter');
+                    sampleCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Initialize audio players
+            const playButtons = document.querySelectorAll('.play-btn');
+            
+            playButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const audio = this.parentElement.querySelector('audio');
+                    const playIcon = this.querySelector('.play-icon');
+                    const pauseIcon = this.querySelector('.pause-icon');
+                    const waveformBars = this.parentElement.querySelectorAll('.waveform-bar');
+                    
+                    // Stop other playing audio
+                    if (currentlyPlaying && currentlyPlaying !== audio) {
+                        currentlyPlaying.pause();
+                        currentlyPlaying.currentTime = 0;
+                        // Reset other buttons
+                        document.querySelectorAll('.play-btn').forEach(otherBtn => {
+                            otherBtn.querySelector('.play-icon').style.display = 'inline';
+                            otherBtn.querySelector('.pause-icon').style.display = 'none';
+                        });
+                        // Stop other waveforms
+                        document.querySelectorAll('.waveform-bar').forEach(bar => {
+                            bar.style.animationPlayState = 'paused';
+                        });
+                    }
+                    
+                    if (audio.paused) {
+                        // Play audio
+                        audio.play().then(() => {
+                            playIcon.style.display = 'none';
+                            pauseIcon.style.display = 'inline';
+                            currentlyPlaying = audio;
+                            
+                            // Start waveform animation
+                            waveformBars.forEach((bar, index) => {
+                                bar.style.animation = `waveform 1.5s ease-in-out infinite`;
+                                bar.style.animationDelay = `${index * 0.1}s`;
+                            });
+                        }).catch(error => {
+                            console.log('Audio play failed:', error);
+                            showToast('Audio preview unavailable', 'error');
+                        });
+                    } else {
+                        // Pause audio
+                        audio.pause();
+                        playIcon.style.display = 'inline';
+                        pauseIcon.style.display = 'none';
+                        currentlyPlaying = null;
+                        
+                        // Stop waveform animation
+                        waveformBars.forEach(bar => {
+                            bar.style.animationPlayState = 'paused';
+                        });
+                    }
+                });
+            });
+            
+            // Handle audio ended event
+            document.querySelectorAll('audio').forEach(audio => {
+                audio.addEventListener('ended', function() {
+                    const playBtn = this.parentElement.querySelector('.play-btn');
+                    const playIcon = playBtn.querySelector('.play-icon');
+                    const pauseIcon = playBtn.querySelector('.pause-icon');
+                    const waveformBars = this.parentElement.querySelectorAll('.waveform-bar');
+                    
+                    playIcon.style.display = 'inline';
+                    pauseIcon.style.display = 'none';
+                    currentlyPlaying = null;
+                    
+                    // Stop waveform animation
+                    waveformBars.forEach(bar => {
+                        bar.style.animationPlayState = 'paused';
+                    });
+                });
+            });
+        });
+        
+        // Add waveform animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes waveform {
+                0%, 100% { height: 8px; }
+                25% { height: 16px; }
+                50% { height: 24px; }
+                75% { height: 12px; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

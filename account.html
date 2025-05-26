@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BCB Sounds Customer Dashboard - Manage your AI music orders, downloads, and subscriptions. Access your custom tracks and account settings.">
+    <title>My Account - BCB Sounds Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Enhanced Account-specific styles with UI improvements */
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-accent: #e63946;
+            --secondary-accent: #2a9d8f;
+            --text-primary: #ffffff;
+            --text-secondary: #a8a8a8;
+            --card-bg: #1a1a1a;
+            --border-color: #2a2a2a;
+            --success: #52b788;
+            --warning: #f77f00;
+            --gradient-primary: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+            --shadow-xl: 0 16px 32px rgba(0,0,0,0.25);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 50%;
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+        }
+
+        /* Light theme support */
+        [data-theme="light"] {
+            --primary-dark: #ffffff;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+            --card-bg: #f5f5f5;
+            --border-color: #dddddd;
+        }
+
+        body {
+            padding-top: 80px;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Beta Badge */
+        .beta-badge {
+            position: fixed;
+            top: 80px;
+            right: 1rem;
+            background: rgba(230, 57, 70, 0.9);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Enhanced Header */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            line-height: 1;
+        }
+
+        .logo-tagline {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-accent);
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-accent);
+            border-radius: var(--radius-full);
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 1rem;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+        }
+
+        /* Dashboard Layout */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--space-8);
+            min-height: calc(100vh - 160px);
+            margin: var(--space-8) 0;
+        }
+
+        .dashboard-sidebar {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-profile {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            margin: 0 auto var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+            color: var(--text-primary);
+        }
+
+        .user-plan {
+            background: rgba(230, 57, 70, 0.1);
+            color: var(--primary-accent);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: var(--space-2);
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            font-weight: 500;
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(230, 57, 70, 0.05);
+            color: var(--primary-accent);
+            transform: translateX(4px);
+        }
+
+        .sidebar-nav a.active {
+            background: rgba(230, 57, 70, 0.1);
+            color: var(--primary-accent);
+            border-left: 3px solid var(--primary-accent);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .dashboard-content {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* Enhanced Stats Cards */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .stat-card {
+            background: var(--primary-dark);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            margin-bottom: var(--space-2);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Enhanced Action Cards */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .action-card {
+            background: var(--primary-dark);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            border: 2px solid var(--border-color);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(230, 57, 70, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all var(--transition-normal);
+        }
+
+        .action-card:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        .action-card:hover {
+            border-color: var(--primary-accent);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .action-card h3 {
+            margin-bottom: var(--space-2);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .action-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced Tables */
+        .orders-section {
+            margin-top: var(--space-8);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--primary-dark);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: var(--space-4);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .orders-table th {
+            background: var(--card-bg);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .orders-table td {
+            color: var(--text-secondary);
+        }
+
+        .orders-table tr:hover {
+            background: rgba(230, 57, 70, 0.02);
+        }
+
+        .order-id {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .order-status.completed {
+            background: rgba(82, 183, 136, 0.2);
+            color: var(--success);
+        }
+
+        .order-status.processing {
+            background: rgba(247, 127, 0, 0.2);
+            color: var(--warning);
+        }
+
+        .order-status.pending {
+            background: rgba(42, 157, 143, 0.2);
+            color: var(--secondary-accent);
+        }
+
+        /* Enhanced Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 0.875rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--primary-accent);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: #d62828;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-btn {
+            padding: var(--space-2) var(--space-4);
+            background: var(--primary-accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            background: #d62828;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .action-btn.secondary:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+        }
+
+        /* Dashboard Sections */
+        .dashboard-section {
+            display: none;
+        }
+
+        .dashboard-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Subscription Card */
+        .subscription-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(230, 57, 70, 0.1) 100%);
+            border: 2px solid var(--primary-accent);
+            padding: var(--space-8);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-8);
+            box-shadow: var(--shadow-md);
+        }
+
+        .subscription-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .subscription-plan {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .subscription-price {
+            color: var(--primary-accent);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .usage-progress {
+            margin-bottom: var(--space-6);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .progress-bar-wrapper {
+            background: var(--primary-dark);
+            height: 8px;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: width 0.5s ease;
+            border-radius: var(--radius-full);
+        }
+
+        /* Referral Section */
+        .referral-section {
+            background: var(--primary-dark);
+            padding: var(--space-8);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .referral-code {
+            display: inline-block;
+            background: var(--card-bg);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-md);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: var(--space-4) 0;
+            cursor: pointer;
+            border: 2px solid var(--border-color);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .referral-code:hover {
+            border-color: var(--primary-accent);
+            transform: scale(1.02);
+        }
+
+        .referral-code:hover::after {
+            content: 'Click to copy';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-accent);
+            color: white;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .social-share-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            margin-top: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        /* Downloads Grid */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .download-card {
+            background: var(--primary-dark);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .download-card:hover {
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-card h3 {
+            margin-bottom: var(--space-2);
+            color: var(--text-primary);
+        }
+
+        .download-meta {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .download-actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-4);
+        }
+
+        .download-expiry {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: var(--space-4);
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: var(--space-6);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--space-2);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--space-3);
+            background: var(--primary-dark);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            transition: all var(--transition-fast);
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-accent);
+        }
+
+        .data-actions {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            margin-top: var(--space-6);
+        }
+
+        .btn-danger {
+            background: #d62828;
+            border-color: #d62828;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #b71c1c;
+            border-color: #b71c1c;
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: var(--space-8) 0 var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-6);
+        }
+
+        .footer-section h4 {
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-2);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .footer-logo {
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-stats {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .social-link:hover {
+            color: var(--primary-accent);
+        }
+
+        .contact-info {
+            margin-top: var(--space-4);
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            width: 50px;
+            height: 50px;
+            background: var(--primary-accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #d62828;
+            transform: translateY(-4px);
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: var(--space-6);
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .toast {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-3);
+            box-shadow: var(--shadow-xl);
+            border-left: 4px solid var(--primary-accent);
+            animation: slideInRight 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .toast.success {
+            border-left-color: var(--success);
+        }
+
+        .toast.error {
+            border-left-color: #d62828;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .beta-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: var(--space-4);
+                text-align: center;
+            }
+
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .dashboard-sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                overflow-x: auto;
+                gap: var(--space-2);
+                padding-bottom: var(--space-3);
+            }
+
+            .sidebar-nav li {
+                margin: 0;
+                flex-shrink: 0;
+            }
+
+            .sidebar-nav a {
+                white-space: nowrap;
+                padding: var(--space-2) var(--space-4);
+            }
+
+            .user-profile {
+                display: flex;
+                align-items: center;
+                gap: var(--space-4);
+                text-align: left;
+                margin-bottom: var(--space-6);
+            }
+
+            .user-avatar {
+                margin: 0;
+                width: 60px;
+                height: 60px;
+                font-size: 1.25rem;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-4);
+            }
+
+            .dashboard-title {
+                font-size: 2rem;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .orders-table {
+                font-size: 0.875rem;
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: var(--space-2);
+            }
+
+            .social-share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .toast-container {
+                left: var(--space-4);
+                right: var(--space-4);
+            }
+        }
+
+        /* Service Cards for Plans */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border-color);
+            transition: all var(--transition-normal);
+            position: relative;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-card.featured {
+            border-color: var(--primary-accent);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(230, 57, 70, 0.05) 100%);
+        }
+
+        .service-card h3 {
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            margin: var(--space-4) 0;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: var(--space-4);
+            background: var(--primary-accent);
+            color: white;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Beta Testing Badge -->
+    <div class="beta-badge">
+        <span>🧪 Beta testing in progress</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="BCB Sounds" class="logo-img" onerror="this.style.display='none'">
+                    <div class="logo-text">
+                        <span class="logo-main">BCB Sounds</span>
+                        <span class="logo-tagline">Powered by AI</span>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                    <li><a href="samples.html" class="nav-link">Samples</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="account.html" class="nav-link active">My Account</a></li>
+                    <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">🌓</button></li>
+                    <li><button class="btn btn-secondary" style="font-size: 0.9rem;" onclick="logout()">Logout</button></li>
+                </ul>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="container">
+        <div class="dashboard-layout">
+            <!-- Sidebar -->
+            <aside class="dashboard-sidebar">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-plan">Pro Member</div>
+                    </div>
+                </div>
+                
+                <nav>
+                    <ul class="sidebar-nav">
+                        <li><a href="#overview" class="active" onclick="showSection('overview')">
+                            <span class="nav-icon">📊</span>
+                            <span>Overview</span>
+                        </a></li>
+                        <li><a href="#orders" onclick="showSection('orders')">
+                            <span class="nav-icon">🎵</span>
+                            <span>My Orders</span>
+                        </a></li>
+                        <li><a href="#downloads" onclick="showSection('downloads')">
+                            <span class="nav-icon">📥</span>
+                            <span>Downloads</span>
+                        </a></li>
+                        <li><a href="#subscription" onclick="showSection('subscription')">
+                            <span class="nav-icon">⭐</span>
+                            <span>Subscription</span>
+                        </a></li>
+                        <li><a href="#referrals" onclick="showSection('referrals')">
+                            <span class="nav-icon">🎁</span>
+                            <span>Referrals</span>
+                        </a></li>
+                        <li><a href="#settings" onclick="showSection('settings')">
+                            <span class="nav-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="dashboard-content">
+                <!-- Overview Section -->
+                <section id="overview-section" class="dashboard-section active">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Welcome back, John!</h1>
+                        <a href="contact.html" class="btn btn-primary">
+                            Create New Track
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Total Tracks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">£280</div>
+                            <div class="stat-label">Total Spent</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Active Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Referrals</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="section-header">
+                        <h2>Quick Actions</h2>
+                    </div>
+                    <div class="quick-actions">
+                        <div class="action-card" onclick="showSection('downloads')">
+                            <div class="action-icon">📥</div>
+                            <h3>Download Files</h3>
+                            <p>Access all your custom tracks</p>
+                        </div>
+                        <div class="action-card" onclick="window.location.href='contact.html'">
+                            <div class="action-icon">🎵</div>
+                            <h3>New Project</h3>
+                            <p>Start a new custom track</p>
+                        </div>
+                        <div class="action-card" onclick="showSection('subscription')">
+                            <div class="action-icon">⭐</div>
+                            <h3>Upgrade Plan</h3>
+                            <p>Get more features and tracks</p>
+                        </div>
+                        <div class="action-card" onclick="openSupport()">
+                            <div class="action-icon">💬</div>
+                            <h3>Get Support</h3>
+                            <p>We're here to help you</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders -->
+                    <div class="orders-section">
+                        <div class="section-header">
+                            <h2>Recent Orders</h2>
+                            <button class="btn btn-outline" onclick="showSection('orders')">View All</button>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Track Name</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="order-id">#BCB-2025-012</span></td>
+                                        <td>Corporate Presentation Intro</td>
+                                        <td>Jan 15, 2025</td>
+                                        <td><span class="order-status completed">Completed</span></td>
+                                        <td><button class="action-btn" onclick="downloadTrack('012')">Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#BCB-2025-011</span></td>
+                                        <td>Podcast Theme Music</td>
+                                        <td>Jan 13, 2025</td>
+                                        <td><span class="order-status processing">Processing</span></td>
+                                        <td><button class="action-btn" disabled>In Progress</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#BCB-2025-010</span></td>
+                                        <td>Product Launch Jingle</td>
+                                        <td>Jan 10, 2025</td>
+                                        <td><span class="order-status completed">Completed</span></td>
+                                        <td><button class="action-btn" onclick="downloadTrack('010')">Download</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders-section" class="dashboard-section">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">My Orders</h1>
+                        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+                            <select class="form-input" style="width: auto; min-width: 150px;">
+                                <option>All Orders</option>
+                                <option>Completed</option>
+                                <option>Processing</option>
+                                <option>Pending</option>
+                            </select>
+                            <input type="search" placeholder="Search orders..." class="form-input" style="width: auto; min-width: 200px;">
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Track Name</th>
+                                    <th>Package</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="order-id">#BCB-2025-012</span></td>
+                                    <td>Corporate Presentation Intro</td>
+                                    <td>Standard</td>
+                                    <td>Jan 15, 2025</td>
+                                    <td><span class="order-status completed">Completed</span></td>
+                                    <td>£50</td>
+                                    <td>
+                                        <button class="action-btn" onclick="downloadTrack('012')">Download</button>
+                                        <button class="action-btn secondary" onclick="viewInvoice('012')">Invoice</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#BCB-2025-011</span></td>
+                                    <td>Podcast Theme Music</td>
+                                    <td>Premium</td>
+                                    <td>Jan 13, 2025</td>
+                                    <td><span class="order-status processing">Processing</span></td>
+                                    <td>£100</td>
+                                    <td>
+                                        <button class="action-btn" disabled>In Progress</button>
+                                        <button class="action-btn secondary" onclick="viewInvoice('011')">Invoice</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#BCB-2025-010</span></td>
+                                    <td>Product Launch Jingle</td>
+                                    <td>Basic</td>
+                                    <td>Jan 10, 2025</td>
+                                    <td><span class="order-status completed">Completed</span></td>
+                                    <td>£20</td>
+                                    <td>
+                                        <button class="action-btn" onclick="downloadTrack('010')">Download</button>
+                                        <button class="action-btn secondary" onclick="viewInvoice('010')">Invoice</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#BCB-2025-009</span></td>
+                                    <td>YouTube Channel Intro</td>
+                                    <td>Standard</td>
+                                    <td>Jan 8, 2025</td>
+                                    <td><span class="order-status completed">Completed</span></td>
+                                    <td>£50</td>
+                                    <td>
+                                        <button class="action-btn" onclick="downloadTrack('009')">Download</button>
+                                        <button class="action-btn secondary" onclick="viewInvoice('009')">Invoice</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Downloads Section -->
+                <section id="downloads-section" class="dashboard-section">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Download Center</h1>
+                        <button class="btn btn-secondary" onclick="downloadAll()">
+                            Download All Files
+                        </button>
+                    </div>
+
+                    <div class="downloads-grid">
+                        <div class="download-card">
+                            <h3>Corporate Presentation Intro</h3>
+                            <p class="download-meta">60 seconds • Standard Package • Delivered Jan 15, 2025</p>
+                            <div class="download-actions">
+                                <button class="action-btn" onclick="downloadFile('mp3')">MP3</button>
+                                <button class="action-btn" onclick="downloadFile('wav')">WAV</button>
+                                <button class="action-btn secondary" onclick="downloadFile('stems')">Stems</button>
+                            </div>
+                            <p class="download-expiry">Downloads expire: Feb 15, 2025</p>
+                        </div>
+                        
+                        <div class="download-card">
+                            <h3>Product Launch Jingle</h3>
+                            <p class="download-meta">30 seconds • Basic Package • Delivered Jan 10, 2025</p>
+                            <div class="download-actions">
+                                <button class="action-btn" onclick="downloadFile('mp3')">MP3</button>
+                                <button class="action-btn secondary" disabled>WAV (Not Available)</button>
+                            </div>
+                            <p class="download-expiry">Downloads expire: Feb 10, 2025</p>
+                        </div>
+                        
+                        <div class="download-card">
+                            <h3>YouTube Channel Intro</h3>
+                            <p class="download-meta">60 seconds • Standard Package • Delivered Jan 8, 2025</p>
+                            <div class="download-actions">
+                                <button class="action-btn" onclick="downloadFile('mp3')">MP3</button>
+                                <button class="action-btn" onclick="downloadFile('wav')">WAV</button>
+                            </div>
+                            <p class="download-expiry">Downloads expire: Feb 8, 2025</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Subscription Section -->
+                <section id="subscription-section" class="dashboard-section">
+                    <h1 class="dashboard-title">My Subscription</h1>
+                    
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <div>
+                                <div class="subscription-plan">Pro Plan</div>
+                                <p style="color: var(--text-secondary); margin: 0;">Renews monthly</p>
+                            </div>
+                            <div class="subscription-price">£99/month</div>
+                        </div>
+                        
+                        <div class="usage-progress">
+                            <div class="progress-info">
+                                <span>Monthly Tracks Used</span>
+                                <span>3 of 5</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+                            <a href="pricing.html" class="btn btn-primary">Upgrade Plan</a>
+                            <button class="btn btn-secondary" onclick="manageBilling()">Manage Billing</button>
+                        </div>
+                    </div>
+
+                    <h2 style="margin: var(--space-8) 0 var(--space-6);">Available Plans</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <h3>Starter</h3>
+                            <div class="service-price">£49/month</div>
+                            <ul style="list-style: none; padding: 0; margin: var(--space-4) 0;">
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ 3 tracks per month</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Standard quality</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Email support</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Up to 72 hours delivery</li>
+                            </ul>
+                            <button class="btn btn-secondary">Downgrade</button>
+                        </div>
+                        <div class="service-card featured">
+                            <div class="popular-badge">Current Plan</div>
+                            <h3>Pro</h3>
+                            <div class="service-price">£99/month</div>
+                            <ul style="list-style: none; padding: 0; margin: var(--space-4) 0;">
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ 5 tracks per month</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Premium quality</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Priority support</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Stem files included</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Up to 48 hours delivery</li>
+                            </ul>
+                            <button class="btn btn-primary" disabled>Current Plan</button>
+                        </div>
+                        <div class="service-card">
+                            <h3>Enterprise</h3>
+                            <div class="service-price">£299/month</div>
+                            <ul style="list-style: none; padding: 0; margin: var(--space-4) 0;">
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Unlimited tracks</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Custom AI training</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Dedicated support</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ API access</li>
+                                <li style="padding: var(--space-1) 0; color: var(--text-secondary);">✓ Up to 24 hours delivery</li>
+                            </ul>
+                            <button class="btn btn-primary" onclick="upgradePlan('enterprise')">Upgrade</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Referrals Section -->
+                <section id="referrals-section" class="dashboard-section">
+                    <h1 class="dashboard-title">Referral Program</h1>
+                    
+                    <div class="referral-section">
+                        <h2>Your Referral Code</h2>
+                        <p style="margin-bottom: var(--space-4);">Share this code with friends to get 20% off their first order and earn £10 credit!</p>
+                        <div class="referral-code" onclick="copyReferralCode()">JOHN-MUSIC-2025</div>
+                        
+                        <div class="dashboard-stats" style="margin-top: var(--space-8);">
+                            <div class="stat-card">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Total Referrals</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">£80</div>
+                                <div class="stat-label">Earned Credits</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">£30</div>
+                                <div class="stat-label">Available Balance</div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-share-buttons">
+                            <button class="btn btn-primary" onclick="shareReferral('twitter')">Share on Twitter</button>
+                            <button class="btn btn-primary" onclick="shareReferral('facebook')">Share on Facebook</button>
+                            <button class="btn btn-secondary" onclick="shareReferral('email')">Email Friends</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings-section" class="dashboard-section">
+                    <h1 class="dashboard-title">Account Settings</h1>
+                    
+                    <div style="max-width: 600px;">
+                        <h2 style="margin-bottom: var(--space-6);">Profile Information</h2>
+                        <form id="profile-form">
+                            <div class="form-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" class="form-input" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-input" value="john.doe@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" class="form-input" placeholder="Optional">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-input" placeholder="Optional">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                        
+                        <h2 style="margin: var(--space-8) 0 var(--space-6);">Notification Preferences</h2>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="email-notifications" checked>
+                                <span>Email notifications for order updates</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="marketing-emails">
+                                <span>Receive promotional emails and newsletters</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="project-reminders" checked>
+                                <span>Reminders about project deadlines</span>
+                            </label>
+                        </div>
+                        
+                        <h2 style="margin: var(--space-8) 0 var(--space-6);">Data & Privacy</h2>
+                        <div class="data-actions">
+                            <button class="btn btn-secondary" onclick="exportData()">
+                                Export My Data
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteAccount()">
+                                Delete Account
+                            </button>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: var(--space-4);">
+                            Account deletion is permanent and cannot be undone. All your data, orders, and downloads will be permanently removed.
+                        </p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-main">BCB Sounds</span>
+                        <span class="logo-tagline">Powered by AI</span>
+                    </div>
+                    <p class="footer-desc">Professional AI-generated music for creators and businesses.</p>
+                    <div class="footer-stats">
+                        <span>Established 2025</span>
+                        <span>•</span>
+                        <span>50+ Beta Users</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">All Services</a></li>
+                        <li><a href="services.html#jingles">Quick Jingles</a></li>
+                        <li><a href="services.html#tracks">Full Tracks</a></li>
+                        <li><a href="services.html#premium">Premium Package</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="samples.html">Sample Library</a></li>
+                        <li><a href="pricing.html">Pricing Calculator</a></li>
+                        <li><a href="contact.html">Get Started</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.pdf" target="_blank">Terms of Service</a></li>
+                        <li><a href="privacy.pdf" target="_blank">Privacy Policy</a></li>
+                        <li><a href="licensing.pdf" target="_blank">Music Licensing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/bcbsounds" target="_blank" class="social-link">
+                            <span class="social-icon">📷</span>
+                            Instagram
+                        </a>
+                        <a href="https://tiktok.com/@bcbsounds" target="_blank" class="social-link">
+                            <span class="social-icon">🎵</span>
+                            TikTok
+                        </a>
+                    </div>
+                    <div class="contact-info">
+                        <p>hello@bcbsounds.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BCB Sounds. All rights reserved. | Established 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/legal.js"></script>
+    <script>
+        // Dashboard-specific functions
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const section = document.getElementById(sectionName + '-section');
+            if (section) {
+                section.classList.add('active');
+            }
+            
+            // Update active sidebar link
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + sectionName) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Track section view
+            if (window.BCBAnalytics) {
+                window.BCBAnalytics.Analytics.trackEvent('Dashboard', 'section_view', sectionName, 1);
+            }
+        }
+
+        function downloadTrack(orderId) {
+            showToast(`Downloading track from order #BCB-2025-${orderId}...`);
+            // In production, this would trigger actual download
+            setTimeout(() => {
+                showToast('Download started! Check your downloads folder.', 'success');
+            }, 1000);
+        }
+
+        function downloadFile(format) {
+            showToast(`Downloading ${format.toUpperCase()} file...`);
+            if (window.BCBAnalytics) {
+                window.BCBAnalytics.Analytics.trackEvent('Dashboard', 'download', format, 1);
+            }
+        }
+
+        function downloadAll() {
+            if (confirm('Download all available files? This may take a few moments.')) {
+                showToast('Preparing download archive...');
+                setTimeout(() => {
+                    showToast('Download started! Check your downloads folder.', 'success');
+                }, 2000);
+            }
+        }
+
+        function viewInvoice(orderId) {
+            showToast(`Opening invoice for order #BCB-2025-${orderId}...`);
+            // In production, this would open PDF invoice
+        }
+
+        function copyReferralCode() {
+            const code = 'JOHN-MUSIC-2025';
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Referral code copied to clipboard!', 'success');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Referral code copied to clipboard!', 'success');
+            });
+        }
+
+        function shareReferral(platform) {
+            const code = 'JOHN-MUSIC-2025';
+            const message = 'Get 20% off AI-generated music at BCB Sounds with my code: ' + code;
+            const url = 'https://bcbsounds.com?ref=' + code;
+            
+            switch(platform) {
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'email':
+                    window.location.href = `mailto:?subject=Get 20% off AI Music&body=${encodeURIComponent(message + '\n\n' + url)}`;
+                    break;
+            }
+            
+            if (window.BCBAnalytics) {
+                window.BCBAnalytics.Analytics.trackEvent('Referral', 'share', platform, 1);
+            }
+        }
+
+        function openSupport() {
+            // Open support via email
+            window.location.href = 'mailto:hello@bcbsounds.com?subject=Support Request&body=Hi, I need help with my account.';
+        }
+
+        function manageBilling() {
+            showToast('Redirecting to billing portal...');
+            // In production, redirect to Stripe/payment processor portal
+            setTimeout(() => {
+                showToast('Feature coming soon! Please contact support for billing changes.', 'info');
+            }, 1000);
+        }
+
+        function upgradePlan(plan) {
+            if (confirm(`Upgrade to ${plan} plan? This will change your monthly billing.`)) {
+                showToast('Processing upgrade...', 'info');
+                setTimeout(() => {
+                    showToast('Plan upgrade successful!', 'success');
+                }, 2000);
+            }
+        }
+
+        function exportData() {
+            if (confirm('Export all your account data? This will create a downloadable file with your information.')) {
+                showToast('Preparing data export...', 'info');
+                setTimeout(() => {
+                    // Create and download a JSON file with user data
+                    const userData = {
+                        profile: {
+                            name: 'John Doe',
+                            email: 'john.doe@example.com',
+                            joinDate: '2025-01-01'
+                        },
+                        orders: [
+                            { id: 'BCB-2025-012', name: 'Corporate Presentation Intro', date: '2025-01-15' },
+                            { id: 'BCB-2025-011', name: 'Podcast Theme Music', date: '2025-01-13' }
+                        ],
+                        exportDate: new Date().toISOString()
+                    };
+                    
+                    const blob = new Blob([JSON.stringify(userData, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `bcb-sounds-data-${Date.now()}.json`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    
+                    showToast('Data export downloaded!', 'success');
+                }, 2000);
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data, orders, and downloads.')) {
+                if (confirm('This is your final warning. Deleting your account is permanent. Continue?')) {
+                    showToast('Processing account deletion...', 'info');
+                    setTimeout(() => {
+                        alert('Account deletion request submitted. You will receive a confirmation email within 24 hours.');
+                        // In production, this would actually process the deletion
+                    }, 2000);
+                }
+            }
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                showToast('Logging out...');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Handle URL hash navigation
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash + '-section')) {
+                showSection(hash);
+            }
+        });
+
+        // Profile form submission
+        document.getElementById('profile-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Profile updated successfully!', 'success');
+        });
+
+        // Theme toggle functionality
+        document.getElementById('theme-toggle')?.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle')?.addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Show toast function
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toast-container');
+            if (!toastContainer) return;
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up any initial state
+            showSection('overview');
+        });
+    </script>
+</body>
+</html>
