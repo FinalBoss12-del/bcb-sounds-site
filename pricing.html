@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BCB Sounds Pricing - Transparent pricing for AI-generated custom music. From £20.">
+    <title>Pricing - BCB Sounds | AI Music Generation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* UI Improvements - Cleaner, more professional look */
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-accent: #E53935;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --card-bg: #1a1a1a;
+            --border-color: #2a2a2a;
+            --success: #4CAF50;
+        }
+        
+        /* Remove excessive animations */
+        * {
+            animation-duration: 0.3s !important;
+        }
+        
+        /* Cleaner navigation */
+        header {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        /* Simplified buttons */
+        .btn {
+            background: var(--primary-accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-accent);
+            color: var(--primary-accent);
+        }
+        
+        /* Clean pricing calculator */
+        .pricing-calculator {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Better package cards */
+        .package-option {
+            cursor: pointer;
+        }
+        
+        .package-card {
+            background: var(--primary-dark);
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .package-option input:checked + .package-card {
+            border-color: var(--primary-accent);
+            background: rgba(229, 57, 53, 0.1);
+        }
+        
+        .package-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .package-price {
+            font-size: 1.8rem;
+            color: var(--primary-accent);
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+        
+        /* Cleaner price display */
+        .price-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(229, 57, 53, 0.1);
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .price-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            margin: 0.5rem 0;
+        }
+        
+        /* Remove visual clutter */
+        .badge, .pulse, .counter, .live-viewers, .announcement-bar, .limited-spots, .countdown-banner {
+            display: none !important;
+        }
+        
+        /* Page header styling */
+        .page-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 6rem 0 3rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Better spacing */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        /* Comparison table */
+        .comparison-table {
+            margin-top: 4rem;
+            overflow-x: auto;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .comparison-table th {
+            background: rgba(229, 57, 53, 0.1);
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Remove popups */
+        .modal, .toast, .social-proof-notification, .activity-notification {
+            display: none !important;
+        }
+        
+        /* Clean checkbox styling */
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .checkbox-option input {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+        
+        /* FAQ section */
+        .pricing-faq {
+            margin-top: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit; text-decoration: none;">
+                        BCB Sounds
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="samples.html" class="nav-link">Samples</a></li>
+                    <li><a href="account.html" class="nav-link">Account</a></li>
+                    <li><button id="theme-toggle" aria-label="Toggle theme">🌓</button></li>
+                </ul>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>No hidden fees. All prices include commercial rights and revisions.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator Section -->
+    <section class="container section">
+        <div class="pricing-calculator">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Calculate Your Price</h2>
+            
+            <div class="pricing-options">
+                <h3>1. Choose Your Package:</h3>
+                <div class="package-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <label class="package-option">
+                        <input type="radio" name="package" value="basic" checked style="display: none;">
+                        <div class="package-card">
+                            <h4>Basic</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">30-second jingle</p>
+                            <div class="package-price">£20</div>
+                        </div>
+                    </label>
+                    <label class="package-option">
+                        <input type="radio" name="package" value="standard" style="display: none;">
+                        <div class="package-card">
+                            <h4>Standard</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">60-second track</p>
+                            <div class="package-price">£50</div>
+                        </div>
+                    </label>
+                    <label class="package-option">
+                        <input type="radio" name="package" value="premium" style="display: none;">
+                        <div class="package-card">
+                            <h4>Premium</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Full audio suite</p>
+                            <div class="package-price">£100</div>
+                        </div>
+                    </label>
+                    <label class="package-option">
+                        <input type="radio" name="package" value="enterprise" style="display: none;">
+                        <div class="package-card">
+                            <h4>Enterprise</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Custom solution</p>
+                            <div class="package-price">£150+</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="usage-rights">
+                <h3>2. Additional Options:</h3>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="broadcast-rights">
+                    <span>TV/Radio broadcast rights (+£30)</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="rush-delivery">
+                    <span>Rush delivery - 12 hours (+50%)</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="stem-files">
+                    <span>Stem files for remixing (+£20)</span>
+                </label>
+            </div>
+            
+            <div class="price-display">
+                <div class="price-label" style="font-size: 1.2rem; color: var(--text-secondary);">Your Total:</div>
+                <div class="price-value">£<span id="calculated-price">20</span></div>
+                <div class="vat-note" style="color: var(--text-secondary); font-size: 0.9rem;">*VAT will be added at checkout where applicable</div>
+                <a href="contact.html" class="btn" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 16px 32px;">
+                    Start Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="container section">
+        <h2 class="section-title">Compare Our Packages</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic (£20)</th>
+                        <th>Standard (£50)</th>
+                        <th>Premium (£100)</th>
+                        <th>Enterprise (£150+)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Track Length</strong></td>
+                        <td>30 seconds</td>
+                        <td>60 seconds</td>
+                        <td>Multiple lengths</td>
+                        <td>Custom lengths</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Revisions</strong></td>
+                        <td>1 included</td>
+                        <td>2 included</td>
+                        <td>3 included</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>File Formats</strong></td>
+                        <td>MP3, WAV</td>
+                        <td>MP3, WAV, AIFF</td>
+                        <td>All formats</td>
+                        <td>All formats + stems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Delivery Time</strong></td>
+                        <td>24 hours</td>
+                        <td>48 hours</td>
+                        <td>48 hours</td>
+                        <td>Custom timeline</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Commercial Rights</strong></td>
+                        <td>✓ Included</td>
+                        <td>✓ Included</td>
+                        <td>✓ Included</td>
+                        <td>✓ Included</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI Variations</strong></td>
+                        <td>1 version</td>
+                        <td>2 versions</td>
+                        <td>3 versions</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Support</strong></td>
+                        <td>Email</td>
+                        <td>Email</td>
+                        <td>Priority email</td>
+                        <td>Dedicated support</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Pricing FAQ -->
+    <section class="container section">
+        <div class="pricing-faq">
+            <h2 class="section-title">Pricing FAQ</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    What's included in the price?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Every package includes: AI-generated custom music, commercial usage rights, the specified number of revisions, high-quality audio files, and email support. You own the music completely once delivered.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Are there any hidden fees?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>No hidden fees! The price you see is what you pay, plus VAT where applicable. Additional services like rush delivery or extra revisions are clearly priced and optional.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Do you offer bulk discounts?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! For orders of 10+ tracks, we offer 10% off. 20+ tracks get 20% off, and 50+ tracks receive 30% off. Contact us for custom enterprise pricing.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    What payment methods do you accept?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards, debit cards, PayPal, and bank transfers for larger orders. Payment is secure and processed through Stripe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container section" style="text-align: center;">
+        <div style="background: var(--card-bg); padding: 3rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <h2>Ready to Create Your Custom Music?</h2>
+            <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Join hundreds of creators using AI-generated music for their projects.</p>
+            <a href="contact.html" class="btn" style="font-size: 1.1rem; padding: 16px 32px;">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BCB Sounds</h3>
+                    <p>AI-powered custom music generation for modern creators</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="services.html">Services</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="samples.html">Samples</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="account.html">My Account</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BCB Sounds. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="toggleChat()">💬</button>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <span>Need Help?</span>
+                <button onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">Hi! How can I help you today?</div>
+            </div>
+            <input type="text" class="chat-input" placeholder="Type a message..." onkeypress="handleChat(event)">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/legal.js"></script>
+    
+    <!-- Pricing Calculator Script -->
+    <script>
+        // Simple pricing calculator
+        function calculatePrice() {
+            const prices = {
+                'basic': 20,
+                'standard': 50,
+                'premium': 100,
+                'enterprise': 150
+            };
+            
+            const selectedPackage = document.querySelector('input[name="package"]:checked').value;
+            let price = prices[selectedPackage];
+            
+            // Add options
+            if (document.getElementById('broadcast-rights').checked) price += 30;
+            if (document.getElementById('stem-files').checked) price += 20;
+            if (document.getElementById('rush-delivery').checked) price *= 1.5;
+            
+            document.getElementById('calculated-price').textContent = Math.round(price);
+        }
+        
+        // Add event listeners
+        document.querySelectorAll('input[name="package"]').forEach(radio => {
+            radio.addEventListener('change', calculatePrice);
+        });
+        
+        document.querySelectorAll('.checkbox-option input').forEach(checkbox => {
+            checkbox.addEventListener('change', calculatePrice);
+        });
+        
+        // FAQ toggle
+        function toggleFAQ(button) {
+            const faqItem = button.closest('.faq-item');
+            faqItem.classList.toggle('active');
+            const icon = button.querySelector('span');
+            icon.textContent = faqItem.classList.contains('active') ? '−' : '+';
+        }
+    </script>
+</body>
+</html>
