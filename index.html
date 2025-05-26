@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom music tailored to your brand. BCB Sounds creates professional soundtracks for creators and businesses.">
+    <title>BCB Sounds - Custom Music Production</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- UX Improvement #1: Loading screen for better perceived performance -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-icon">🎵</div>
+            <div class="loader-text">Creating Your Sound Experience...</div>
+        </div>
+    </div>
+
+    <!-- UX Improvement #2: Announcement bar for urgency -->
+    <div class="announcement-bar">
+        <p>🎉 Limited Time: Get 20% off your first project! Use code: SOUND20</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <div class="logo">BCB Sounds</div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><button id="theme-toggle" aria-label="Toggle theme">🌓</button></li>
+                </ul>
+                <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+            </div>
+        </nav>
+        <!-- UX Improvement #3: Progress indicator for page sections -->
+        <div class="progress-bar" id="progress-bar"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- UI Improvement #1: Animated background gradient -->
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <!-- UI Improvement #2: Animated text reveal -->
+            <h1 class="hero-title">
+                <span class="word">Custom</span>
+                <span class="word">Music</span>
+                <span class="word">That</span>
+                <span class="word">Tells</span>
+                <span class="word">Your</span>
+                <span class="word">Story</span>
+            </h1>
+            <p class="hero-subtitle">Join 500+ creators who've transformed their brand with professional custom music</p>
+            <!-- UX Improvement #4: Social proof counter -->
+            <div class="social-proof">
+                <span class="counter" data-target="500">0</span>+ Happy Clients
+                <span class="divider">•</span>
+                <span class="counter" data-target="1200">0</span>+ Projects Completed
+            </div>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">
+                    <span>Get Started</span>
+                    <!-- UI Improvement #3: Button loading state -->
+                    <span class="btn-loader"></span>
+                </a>
+                <a href="#portfolio" class="btn btn-secondary">Listen to Our Work</a>
+            </div>
+        </div>
+        <!-- UI Improvement #4: Scroll indicator -->
+        <div class="scroll-indicator">
+            <span></span>
+            <p>Scroll to explore</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container section">
+        <h2 class="section-title">Our Services</h2>
+        <!-- UX Improvement #5: Service comparison helper -->
+        <p class="section-subtitle">Not sure which service is right for you? <button class="help-btn" onclick="showServiceHelper()">Use our service finder →</button></p>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <span class="service-icon">🎵</span>
+                <h3>Custom Jingles</h3>
+                <p>Memorable audio branding for your business</p>
+                <!-- UX Improvement #6: Feature list for clarity -->
+                <ul class="feature-list">
+                    <li>30-60 second compositions</li>
+                    <li>2 revisions included</li>
+                    <li>All file formats</li>
+                </ul>
+                <div class="service-price">From $499</div>
+                <button class="btn btn-primary" onclick="selectService('jingle', 499)">Choose This</button>
+            </div>
+            
+            <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
+                <span class="badge pulse">Most Popular</span>
+                <span class="service-icon">🎬</span>
+                <h3>Commercial Music</h3>
+                <p>Professional soundtracks for ads and videos</p>
+                <ul class="feature-list">
+                    <li>Full production quality</li>
+                    <li>3 revisions included</li>
+                    <li>Commercial license</li>
+                </ul>
+                <div class="service-price">From $799</div>
+                <button class="btn btn-primary" onclick="selectService('commercial', 799)">Choose This</button>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <span class="service-icon">🎙️</span>
+                <h3>Podcast Music</h3>
+                <p>Intro, outro, and transition music for podcasts</p>
+                <ul class="feature-list">
+                    <li>Multiple variations</li>
+                    <li>Loop-ready versions</li>
+                    <li>Unlimited use license</li>
+                </ul>
+                <div class="service-price">From $599</div>
+                <button class="btn btn-primary" onclick="selectService('podcast', 599)">Choose This</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- UX Improvement #7: Trust badges section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span class="badge-icon">🔒</span>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="badge-icon">💰</span>
+                    <span>Money-Back Guarantee</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="badge-icon">⚡</span>
+                    <span>Fast Delivery</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="badge-icon">🏆</span>
+                    <span>Award Winning</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="container section">
+        <h2 class="section-title">Recent Work</h2>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="commercial">Commercial</button>
+            <button class="filter-btn" data-filter="podcast">Podcast</button>
+            <button class="filter-btn" data-filter="jingle">Jingles</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="commercial" data-aos="zoom-in">
+                <!-- UI Improvement #5: Hover overlay with preview -->
+                <div class="portfolio-overlay">
+                    <span class="overlay-icon">🎧</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Nike Running Campaign</h3>
+                    <p>Energetic 30-second soundtrack</p>
+                    <!-- UX Improvement #8: Visual audio player -->
+                    <div class="mini-player">
+                        <button class="play-btn" data-track="Nike Campaign">▶</button>
+                        <div class="waveform">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <span class="duration">0:30</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="podcast" data-aos="zoom-in" data-aos-delay="100">
+                <div class="portfolio-overlay">
+                    <span class="overlay-icon">🎧</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>True Crime Podcast</h3>
+                    <p>Suspenseful intro music</p>
+                    <div class="mini-player">
+                        <button class="play-btn" data-track="True Crime">▶</button>
+                        <div class="waveform">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <span class="duration">0:15</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="jingle" data-aos="zoom-in" data-aos-delay="200">
+                <div class="portfolio-overlay">
+                    <span class="overlay-icon">🎧</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Coffee Shop Jingle</h3>
+                    <p>Warm, inviting brand music</p>
+                    <div class="mini-player">
+                        <button class="play-btn" data-track="Coffee Shop">▶</button>
+                        <div class="waveform">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <span class="duration">0:20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- UX Improvement #9: Load more for better performance -->
+        <div class="load-more-container">
+            <button class="btn btn-secondary" id="load-more">Load More Projects</button>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section id="pricing" class="container section">
+        <h2 class="section-title">Pricing Calculator</h2>
+        <!-- UX Improvement #10: Pricing context -->
+        <p class="section-subtitle">Get an instant quote for your project. All prices include commercial license.</p>
+        <div class="pricing-calculator">
+            <!-- UX Improvement #11: Visual price breakdown -->
+            <div class="price-breakdown">
+                <div class="breakdown-item">
+                    <span>Base Price</span>
+                    <span id="base-price">$299</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Duration Adjustment</span>
+                    <span id="duration-adjustment">+$0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Style Complexity</span>
+                    <span id="style-adjustment">×1.0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Delivery Speed</span>
+                    <span id="delivery-adjustment">×1.0</span>
+                </div>
+            </div>
+            <div class="calc-controls">
+                <div class="form-group">
+                    <label>Track Duration: <span id="duration-display">60</span> seconds</label>
+                    <input type="range" id="duration" min="15" max="300" value="60" class="styled-range">
+                    <!-- UI Improvement #6: Range markers -->
+                    <div class="range-markers">
+                        <span>15s</span>
+                        <span>300s</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Music Style</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="style" value="simple" checked>
+                            <span class="radio-label">Simple</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="style" value="standard">
+                            <span class="radio-label">Standard</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="style" value="complex">
+                            <span class="radio-label">Complex</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Speed</label>
+                    <select id="delivery" class="styled-select">
+                        <option value="standard">Standard (7 days)</option>
+                        <option value="rush">Rush (3 days) +25%</option>
+                        <option value="urgent">Urgent (24 hours) +50%</option>
+                    </select>
+                </div>
+            </div>
+            <div class="price-display">
+                <div class="price-label">Estimated Price:</div>
+                <div class="price-value">$<span id="calculated-price">599</span></div>
+                <!-- UX Improvement #12: Savings indicator -->
+                <div class="savings-badge">Save 20% with code SOUND20</div>
+                <button class="btn btn-primary btn-large" onclick="startProject()">
+                    Start Your Project
+                    <span class="arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container section">
+        <h2 class="section-title">What Clients Say</h2>
+        <!-- UI Improvement #7: Carousel dots -->
+        <div class="testimonials-wrapper">
+            <div class="testimonials-grid" id="testimonials-grid">
+                <div class="testimonial active" data-aos="fade-up">
+                    <!-- UX Improvement #13: Client photos for trust -->
+                    <div class="client-info">
+                        <div class="client-avatar">SJ</div>
+                        <div>
+                            <strong>Sarah Johnson</strong>
+                            <span>Marketing Director</span>
+                        </div>
+                    </div>
+                    <p>"BCB Sounds transformed our brand identity. The custom jingle increased our ad recall by 45%!"</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+                    <div class="client-info">
+                        <div class="client-avatar">MC</div>
+                        <div>
+                            <strong>Mike Chen</strong>
+                            <span>Podcast Host</span>
+                        </div>
+                    </div>
+                    <p>"Professional, fast, and the quality exceeded expectations. Highly recommended!"</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+                <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+                    <div class="client-info">
+                        <div class="client-avatar">ED</div>
+                        <div>
+                            <strong>Emma Davis</strong>
+                            <span>Creative Director</span>
+                        </div>
+                    </div>
+                    <p>"The team understood our vision perfectly. Our commercial music is exactly what we needed."</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" onclick="showTestimonial(0)"></span>
+                <span class="dot" onclick="showTestimonial(1)"></span>
+                <span class="dot" onclick="showTestimonial(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container section">
+        <h2 class="section-title">Ready to Create Your Sound?</h2>
+        <!-- UX Improvement #14: Response time expectation -->
+        <p class="section-subtitle">We typically respond within 2 hours during business hours (9 AM - 6 PM EST)</p>
+        <form id="contact-form" class="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <!-- UX Improvement #15: Input validation feedback -->
+                    <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <span class="error-message"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <select id="project-type" required>
+                    <option value="">Select Project Type</option>
+                    <option value="jingle">Custom Jingle ($499+)</option>
+                    <option value="commercial">Commercial Music ($799+)</option>
+                    <option value="podcast">Podcast Music ($599+)</option>
+                    <option value="other">Other / Not Sure</option>
+                </select>
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <textarea id="message" placeholder="Tell us about your project..." rows="4" required></textarea>
+                <!-- UX Improvement #16: Character counter -->
+                <span class="char-counter">0 / 500</span>
+                <span class="error-message"></span>
+            </div>
+            <!-- UX Improvement #17: Budget expectation setter -->
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="budget-confirm">
+                    <span>I understand projects typically start at $499</span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-large">
+                Send Message
+                <span class="btn-loader"></span>
+            </button>
+            <div id="form-status" class="form-status"></div>
+        </form>
+        <!-- UX Improvement #18: Alternative contact methods -->
+        <div class="contact-alternatives">
+            <p>Prefer to talk? Call us at <a href="tel:1-800-MUSIC" class="phone-link">1-800-MUSIC</a> or email <a href="mailto:hello@bcbsounds.com">hello@bcbsounds.com</a></p>
+        </div>
+    </section>
+
+    <!-- UX Improvement #19: FAQ Section -->
+    <section class="container section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="faq-question">How long does a project take?</h3>
+                <p class="faq-answer">Most projects are completed within 7 business days. Rush delivery available in 24-72 hours.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What's included in the price?</h3>
+                <p class="faq-answer">All packages include custom composition, mixing, mastering, revisions, and commercial license.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Can I request revisions?</h3>
+                <p class="faq-answer">Yes! All packages include 2-3 revisions. We work until you're 100% satisfied.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Do I own the rights?</h3>
+                <p class="faq-answer">Yes, you receive full commercial rights to use your custom music anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BCB Sounds</h3>
+                    <p>Custom music tailored to your brand.</p>
+                    <!-- UX Improvement #20: Social proof in footer -->
+                    <div class="footer-stats">
+                        <span>500+ Happy Clients</span>
+                        <span>•</span>
+                        <span>4.9★ Rating</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BCB Sounds. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Chat Widget -->
+    <div class="chat-widget">
+        <!-- UI Improvement #8: Pulsing availability indicator -->
+        <div class="chat-status online"></div>
+        <button class="chat-button" onclick="toggleChat()">💬</button>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <span>Chat with us</span>
+                <span class="chat-status-text">Online</span>
+                <button onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">Hi! How can I help you with your music project?</div>
+            </div>
+            <input type="text" class="chat-input" placeholder="Type a message..." onkeypress="handleChat(event)">
+        </div>
+    </div>
+
+    <!-- UI Improvement #9: Back to top button -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- UI Improvement #10: Toast notification container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

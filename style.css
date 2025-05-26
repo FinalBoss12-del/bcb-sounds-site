@@ -1,0 +1,1372 @@
+/* BCB Sounds - Enhanced CSS with 10 UI Improvements */
+
+:root {
+    --primary-dark: #111;
+    --primary-accent: #C62828;
+    --secondary-accent: #ff5500;
+    --text-primary: #f5f5f5;
+    --text-secondary: #aaa;
+    --card-bg: #222;
+    --border-color: #333;
+    --success: #4CAF50;
+    /* UI Improvement #1: Enhanced color palette */
+    --gradient-1: linear-gradient(135deg, #C62828 0%, #ff5500 100%);
+    --gradient-2: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.2);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.25);
+}
+
+/* Light theme */
+[data-theme="light"] {
+    --primary-dark: #fff;
+    --text-primary: #111;
+    --text-secondary: #666;
+    --card-bg: #f5f5f5;
+    --border-color: #ddd;
+    --gradient-2: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* UI Improvement #2: Smooth transitions and custom selection */
+::selection {
+    background: var(--primary-accent);
+    color: white;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--primary-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* UI Improvement #3: Loading Screen */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-icon {
+    font-size: 3rem;
+    animation: bounce 1s infinite;
+}
+
+.loader-text {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Announcement Bar */
+.announcement-bar {
+    background: var(--gradient-1);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--primary-dark);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(17, 17, 17, 0.95);
+}
+
+/* UX Improvement #3: Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--primary-accent);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-accent);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-accent);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* UI Improvement #1: Animated gradient background */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-2);
+    z-index: -1;
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* UI Improvement #2: Text reveal animation */
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-title .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: wordReveal 0.6s ease forwards;
+}
+
+.hero-title .word:nth-child(1) { animation-delay: 0.1s; }
+.hero-title .word:nth-child(2) { animation-delay: 0.2s; }
+.hero-title .word:nth-child(3) { animation-delay: 0.3s; }
+.hero-title .word:nth-child(4) { animation-delay: 0.4s; }
+.hero-title .word:nth-child(5) { animation-delay: 0.5s; }
+.hero-title .word:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes wordReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* UX Improvement #4: Social proof counter */
+.social-proof {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 1s forwards;
+}
+
+.counter {
+    font-weight: 700;
+    color: var(--primary-accent);
+    font-size: 1.5rem;
+}
+
+.divider {
+    color: var(--text-secondary);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 1.2s forwards;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* UI Improvement #4: Button hover effects */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: var(--primary-accent);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background: var(--secondary-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-accent);
+    color: white;
+}
+
+/* UI Improvement #3: Button loading state */
+.btn-loader {
+    width: 0;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+    display: none;
+}
+
+.btn.loading .btn-loader {
+    display: inline-block;
+    width: 20px;
+}
+
+.btn.loading span:first-child {
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* UI Improvement #4: Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 1.4s forwards;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 25px;
+    margin: 0 auto 0.5rem;
+    position: relative;
+}
+
+.scroll-indicator span::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: scrollDot 1.5s infinite;
+}
+
+@keyframes scrollDot {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 20px); opacity: 0; }
+}
+
+/* Sections */
+section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+}
+
+/* UX Improvement #5: Help button */
+.help-btn {
+    background: none;
+    border: none;
+    color: var(--primary-accent);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* Services */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* UI Improvement #5: Enhanced card hover effects */
+.service-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    border: 2px solid transparent;
+    transform-style: preserve-3d;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-accent);
+    box-shadow: var(--shadow-xl);
+}
+
+.service-card.featured {
+    border-color: var(--primary-accent);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(198, 40, 40, 0.1) 100%);
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--primary-accent);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+/* UI Improvement #6: Pulse animation for badges */
+.badge.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.service-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.service-price {
+    font-size: 1.5rem;
+    color: var(--primary-accent);
+    margin: 1rem 0;
+    font-weight: 700;
+}
+
+/* UX Improvement #6: Feature list */
+.feature-list {
+    list-style: none;
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.feature-list li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+}
+
+.feature-list li::before {
+    content: '✓ ';
+    color: var(--success);
+    font-weight: bold;
+}
+
+/* UX Improvement #7: Trust badges */
+.trust-section {
+    background: var(--card-bg);
+    padding: 2rem 0;
+}
+
+.trust-badges {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.trust-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.trust-badge:hover {
+    opacity: 1;
+}
+
+.badge-icon {
+    font-size: 2rem;
+}
+
+/* Portfolio */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: white;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-item {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+}
+
+/* UI Improvement #5: Portfolio hover overlay */
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(198, 40, 40, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.overlay-icon {
+    font-size: 3rem;
+    color: white;
+    transform: scale(0);
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover .overlay-icon {
+    transform: scale(1);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.portfolio-content {
+    padding: 2rem;
+}
+
+/* UX Improvement #8: Visual audio player */
+.mini-player {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: var(--primary-dark);
+    border-radius: 25px;
+}
+
+.play-btn {
+    background: var(--primary-accent);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.play-btn:hover {
+    background: var(--secondary-accent);
+    transform: scale(1.1);
+}
+
+/* UI Improvement #7: Animated waveform */
+.waveform {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+}
+
+.waveform span {
+    width: 3px;
+    height: 20px;
+    background: var(--text-secondary);
+    border-radius: 3px;
+    animation: wave 1.2s linear infinite;
+}
+
+.waveform span:nth-child(1) { animation-delay: 0s; height: 10px; }
+.waveform span:nth-child(2) { animation-delay: 0.1s; height: 25px; }
+.waveform span:nth-child(3) { animation-delay: 0.2s; height: 15px; }
+.waveform span:nth-child(4) { animation-delay: 0.3s; height: 30px; }
+.waveform span:nth-child(5) { animation-delay: 0.4s; height: 20px; }
+
+@keyframes wave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.5); }
+}
+
+.duration {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* UX Improvement #9: Load more */
+.load-more-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Pricing Calculator */
+.pricing-calculator {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* UX Improvement #11: Price breakdown */
+.price-breakdown {
+    background: var(--primary-dark);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.breakdown-item span:last-child {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.calc-controls {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* UI Improvement #6: Styled range input */
+.styled-range {
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.styled-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.styled-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(198, 40, 40, 0.5);
+}
+
+.range-markers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* Radio buttons */
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-label {
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.radio-option input[type="radio"]:checked + .radio-label {
+    background: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: white;
+}
+
+/* Select dropdown */
+.styled-select {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--primary-dark);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.styled-select:focus {
+    border-color: var(--primary-accent);
+    outline: none;
+}
+
+.price-display {
+    text-align: center;
+    padding: 2rem;
+    background: var(--primary-dark);
+    border-radius: 8px;
+}
+
+.price-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.price-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-accent);
+    margin: 1rem 0;
+}
+
+/* UX Improvement #12: Savings badge */
+.savings-badge {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.btn-large {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+}
+
+.arrow {
+    transition: transform 0.3s;
+}
+
+.btn:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Testimonials */
+.testimonials-wrapper {
+    position: relative;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* UX Improvement #13: Client info */
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.client-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.client-info div span {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.rating {
+    color: #FFD700;
+}
+
+/* UI Improvement #7: Testimonial dots */
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--primary-accent);
+    transform: scale(1.2);
+}
+
+/* Contact Form */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 4px;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+}
+
+/* UX Improvement #15: Input validation */
+.contact-form input.error,
+.contact-form select.error,
+.contact-form textarea.error {
+    border-color: #f44336;
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* UX Improvement #16: Character counter */
+.char-counter {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* UX Improvement #17: Checkbox */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.form-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background: var(--success);
+    color: white;
+}
+
+.form-status.error {
+    display: block;
+    background: #f44336;
+    color: white;
+}
+
+/* UX Improvement #18: Contact alternatives */
+.contact-alternatives {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+}
+
+.phone-link {
+    color: var(--primary-accent);
+    font-weight: 600;
+}
+
+/* UX Improvement #19: FAQ Section */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+}
+
+/* Footer */
+footer {
+    background: var(--card-bg);
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    display: block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: var(--primary-accent);
+}
+
+/* UX Improvement #20: Footer stats */
+.footer-stats {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* Chat Widget */
+.chat-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+/* UI Improvement #8: Pulsing status indicator */
+.chat-status {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 3px solid var(--primary-dark);
+}
+
+.chat-status.online {
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.chat-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-accent);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s;
+}
+
+.chat-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 400px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-xl);
+    display: none;
+    flex-direction: column;
+}
+
+.chat-window.active {
+    display: flex;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.chat-header {
+    padding: 1rem;
+    background: var(--primary-accent);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-status-text {
+    font-size: 0.875rem;
+}
+
+.chat-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+.message.bot {
+    background: var(--primary-dark);
+}
+
+.message.user {
+    background: var(--primary-accent);
+    color: white;
+    margin-left: auto;
+    max-width: 80%;
+}
+
+.chat-input {
+    padding: 1rem;
+    border: none;
+    border-top: 1px solid var(--border-color);
+    background: var(--primary-dark);
+    color: var(--text-primary);
+}
+
+/* UI Improvement #9: Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    box-shadow: var(--shadow-md);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* UI Improvement #10: Toast notifications */
+.toast-container {
+    position: fixed;
+    top: 5rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.toast {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid var(--primary-accent);
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+/* Fade in animation for sections */
+[data-aos] {
+    opacity: 0;
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(30px);
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-dark);
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid,
+    .portfolio-grid,
+    .testimonials-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chat-window {
+        width: 90vw;
+        right: -1rem;
+    }
+    
+    .social-proof {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .trust-badges {
+        grid-template-columns: 1fr 1fr;
+    }
+}
