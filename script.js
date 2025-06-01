@@ -1,4 +1,11 @@
-// BCB Sounds - Enhanced JavaScript (Chatbot Removed)
+// BCB Sounds - Enhanced JavaScript with Backend Integration
+
+// STRIPE CONFIGURATION
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_51RT1qXAnK8iGDOXQO8kIAbgnQzRxJBT3pTXnN0m5i4RbRkN1cbOAIPXRB55RLTnsfU1xdRjkOmRDNzEcGMQ5AUQl00RvslDBuX';
+const BACKEND_URL = 'https://bcb-sounds-backend-production.up.railway.app';
+
+// Initialize Stripe
+const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
 // Theme Management
 class ThemeManager {
@@ -194,6 +201,11 @@ class FormManager {
     async handleSubmit(e, form) {
         e.preventDefault();
         
+        // Check if this is the contact form
+        if (form.id === 'contact-form') {
+            return this.handleContactForm(form);
+        }
+        
         // Validate all fields
         const inputs = form.querySelectorAll('.form-input[required]');
         let isValid = true;
@@ -224,6 +236,51 @@ class FormManager {
             
         } catch (error) {
             showToast('Failed to submit form. Please try again.', 'error');
+        } finally {
+            this.setButtonLoading(submitBtn, false, originalText);
+        }
+    }
+    
+    async handleContactForm(form) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        this.setButtonLoading(submitBtn, true);
+        
+        const formData = {
+            name: form.querySelector('#name').value,
+            email: form.querySelector('#email').value,
+            projectType: form.querySelector('#project-type').value,
+            message: form.querySelector('#message').value
+        };
+        
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/contact`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                showToast('Message sent successfully! We\'ll be in touch soon.', 'success');
+                form.reset();
+                
+                // Show success status
+                const formStatus = document.getElementById('form-status');
+                if (formStatus) {
+                    formStatus.textContent = 'Thank you! We\'ll contact you within 24 hours.';
+                    formStatus.className = 'form-status success';
+                    formStatus.style.display = 'block';
+                }
+            } else {
+                throw new Error(result.error || 'Failed to send message');
+            }
+        } catch (error) {
+            console.error('Contact form error:', error);
+            showToast('Failed to send message. Please try again or email us directly.', 'error');
         } finally {
             this.setButtonLoading(submitBtn, false, originalText);
         }
@@ -732,6 +789,49 @@ class SessionManager {
     }
 }
 
+// Payment Processing
+async function startProject() {
+    const price = parseFloat(document.getElementById('calculated-price').textContent);
+    const packageType = document.querySelector('input[name="package"]:checked').value;
+    const discountCode = ''; // Add discount code input if needed
+    
+    // Show loading
+    showToast('Redirecting to secure checkout...', 'info');
+    
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                packageType,
+                price,
+                discountCode,
+                customerEmail: '' // Can be added from a form field
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.sessionId) {
+            // Redirect to Stripe Checkout
+            const result = await stripe.redirectToCheckout({
+                sessionId: data.sessionId
+            });
+            
+            if (result.error) {
+                throw new Error(result.error.message);
+            }
+        } else {
+            throw new Error(data.error || 'Failed to create checkout session');
+        }
+    } catch (error) {
+        console.error('Checkout error:', error);
+        showToast('Failed to start checkout. Please try again or contact support.', 'error');
+    }
+}
+
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize core managers
@@ -818,3 +918,4 @@ window.scrollToTop = scrollToTop;
 window.scrollToSection = scrollToSection;
 window.selectService = selectService;
 window.calculatePrice = calculatePrice;
+window.startProject = startProject;
